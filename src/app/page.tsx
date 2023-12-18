@@ -1,9 +1,14 @@
-import Image from 'next/image'
-import Products from '../../components/products'
+import Image from "next/image";
+import Cart from '../../components/cart'
+import Products from "../../components/products";
+import { CartProvider } from "../../context/CartContext";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Products/> 
+      <CartProvider>
+        <Products/>
+        <Cart/>
+      </CartProvider>
     </main>
-  )
+  );
 }

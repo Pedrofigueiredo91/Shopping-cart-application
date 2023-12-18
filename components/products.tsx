@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 
 import { Product } from "../types/types";
-
+import {useCart} from '../context/CartContext'
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null); 
+  const {addToCart} = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -35,9 +36,8 @@ const Products: React.FC = () => {
         <div key={product.id} className="product">
           <img src={product.thumbnail} alt="product.title" />
           <h3>{product.title}</h3>
-          <p>{product.rating}</p>
           <p>£{product.price}</p>
-          <button>Add to Cart</button>
+          <button onClick={() => addToCart(product)}>Add to Cart</button>
         </div>
       ))}
     </div>
