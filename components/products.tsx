@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-import { Product } from "../lib/types";
-import { useCart } from "../context/cart-context";
+import { Product } from "../types/types";
+import { useCart } from "../hooks/useCart";
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
