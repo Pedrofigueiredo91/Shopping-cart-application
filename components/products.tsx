@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 
-import { Product } from "../types/types";
-import {useCart} from '../context/CartContext'
+import { Product } from "../lib/types";
+import { useCart } from "../context/cart-context";
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null); 
-  const {addToCart} = useCart();
+  const [error, setError] = useState<string | null>(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,7 +21,7 @@ const Products: React.FC = () => {
         setProducts(data.products);
       } catch (error: any) {
         setError(error.message);
-      }finally{ 
+      } finally {
         setLoading(false);
       }
     };
