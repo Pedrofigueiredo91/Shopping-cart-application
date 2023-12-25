@@ -1,8 +1,12 @@
 export interface Product {
   id: number;
   title: string;
+  brand: string;
+  description: string;
   price: number;
   thumbnail: string;
+  category: string;
+  discountPercentage: number;
 }
 
 export interface CartItem extends Product {
