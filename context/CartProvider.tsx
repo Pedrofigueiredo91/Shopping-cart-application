@@ -4,10 +4,10 @@ import { CartContext } from "./CartContext";
 import { useCartActions } from "../hooks/useCartActions";
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { cartItems, addToCart, removeFromCart, updateQuantity } = useCartActions();
+  const cart = useCartActions();
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity }}>
+    <CartContext.Provider value={cart}>
       {children}
     </CartContext.Provider>
   );

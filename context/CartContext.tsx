@@ -7,6 +7,7 @@ export interface CartContextType {
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
+  calculateTotal: () => number
 }
 
 export const CartContext = createContext<CartContextType | undefined>(undefined);

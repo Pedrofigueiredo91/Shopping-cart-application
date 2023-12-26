@@ -13,6 +13,7 @@ export interface CartItem extends Product {
   id: number;
   title: string;
   price: number;
+  discountPercentage: number;
   quantity: number;
   thumbnail: string;
 }
