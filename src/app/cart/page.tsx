@@ -1,13 +1,14 @@
-'use client'
-import React from 'react';
-import Cart from '../../../components/cart';
-
-
-
+"use client";
+import React from "react";
+import Cart from "../../../components/cart";
+import Header from "../../../components/header";
 
 const CartPage: React.FC = () => {
   return (
-    <Cart/>
+    <div>
+      <Header />
+      <Cart />
+    </div>
   );
 };
 
