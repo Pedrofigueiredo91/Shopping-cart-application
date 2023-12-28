@@ -41,7 +41,7 @@ const Products: React.FC = () => {
       {products.map((product) => (
         <div
           key={product.id}
-          className="relative m-6 p-5 py-12 bg-white rounded-lg shadow-lg transform duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
+          className="relative m-6 p-5 py-12 bg-white rounded-lg shadow-2xl transform duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
         >
           <div className="w-64 h-64 p-4 group">
             <Image
@@ -65,12 +65,12 @@ const Products: React.FC = () => {
             </span>{" "}
           </h2>
           <button
-            className="p-2 px-6 bg-teal-500 text-white rounded-md hover:bg-teal-600"
+            className="p-2 px-6 bg-sky-600 text-white rounded-md hover:bg-sky-500"
             onClick={() => addToCart(product)}
           >
             Add To Cart
           </button>
-          <div className="absolute top-5 right-2 p-2 px-5 bg-red-600 text-white font-semibold uppercase">
+          <div className="absolute top-5 right-2 p-2 px-5 text-red-700 font-semibold">
             {Math.round(product.discountPercentage)}% Off
           </div>
         </div>

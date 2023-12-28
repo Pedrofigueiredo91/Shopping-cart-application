@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   const { cartItems, calculateTotal} = context;
   const total = calculateTotal().toFixed(2)
   return (
-    <div className="fixed top-0 left-0 w-full z-10 bg-white bg-opacity-90 h-20 mg:mb-20">
+    <div className="fixed top-0 left-0 w-full z-10 bg-white bg-opacity-90 backdrop-blur-sm h-20 mg:mb-20">
       <Container className="h-full flex items-center md:gap-x-5 justify-between md:justify-start">
         <Link href={"/"}>
           <h3 className="text-3xl font-semibold ">Tangent</h3>
