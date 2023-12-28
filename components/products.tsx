@@ -37,7 +37,7 @@ const Products: React.FC = () => {
   if (error) return <div>Error : {error}</div>;
 
   return (
-    <div className="max-w-7xl mx-auto grid gap-4 p-4 grid-cols-1 md:grid-cols-2 lg:xl:grid-cols-3">
+    <div className="max-w-7xl mx-auto mt-10 grid gap-4 p-4 grid-cols-1 md:grid-cols-2 lg:xl:grid-cols-3">
       {products.map((product) => (
         <div
           key={product.id}
