@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 import { CartProvider } from "../../context/CartProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <CartProvider>
         <body className={inter.className}>{children}</body>
-        <ToastContainer position="bottom-right" newestOnTop />
+        <Toaster position="top-right" />
       </CartProvider>
     </html>
   );
