@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../context/CartContext";
 
@@ -13,7 +15,7 @@ const Cart: React.FC = () => {
     return <p>Cart cannot be loaded at the moment.</p>;
   }
 
-  const { cartItems, removeFromCart, updateQuantity, calculateTotal } = context;
+  const { cartItems, removeFromCart, updateQuantity, calculateTotal, calculateTotalDiscount } = context;
 
   
   const removalToastId = "removal-confirmation";
@@ -24,7 +26,7 @@ const Cart: React.FC = () => {
       toast.warn(
         ({ closeToast }) => (
           <div className="rounded-md bg-white p-3 ">
-            <h3 className="text-lg">Are you sure you want to delete this item?</h3>
+            <h3 className="text-lg">Are you sure you want to delete this item from your cart?</h3>
             <div className="flex justify-around mt-4">
               <button
                 className="px-4 py-2 rounded-md bg-white"
@@ -55,7 +57,7 @@ const Cart: React.FC = () => {
       <div className="justify-center flex-1 max-w-6xl px-4 py-6 mx-auto lg:py-4 md:px-6">
         <h2 className="mb-10 text-4xl font-bold text-center">Your Cart</h2>
         {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
+          <p className="text-xl text-center mb-4">Your cart is empty.</p>
         ) : (
           <div className="mb-10">
             {cartItems.map((item) => (
@@ -63,11 +65,11 @@ const Cart: React.FC = () => {
                 key={item.id}
                 className="relative flex flex-wrap items-center pb-8 mb-8 -mx-4 border-b border-gray-200 xl:justify-between border-opacity-40"
               >
-                <div className="w-full mb-4 md:mb-0 h-96 md:h-44 md:w-56">
+                <div className="w-full mb-4 md:mb-0 h-96 md:h-44 md:w-56 sm:w-1/2">
                   <img
                     src={item.thumbnail}
                     alt={item.title}
-                    className="object-cover w-full h-full rounded-lg"
+                    className="object-cover w-full h-full rounded-lg sm:w-"
                   />
                 </div>
                 <div className="w-full px-4 mb-6 md:w-96 xl:mb-0">
@@ -82,7 +84,7 @@ const Cart: React.FC = () => {
                 <div className="w-full px-4 mt-6 mb-6 xl:w-auto xl:mb-0 xl:mt-0">
                   <div className="flex items-center">
                     <h2 className="mr-4 font-medium">Qty:</h2>
-                    <div className="inline-flex items-center px-4 font-semibold text-black border border-gray-300 rounded-md">
+                    <div className="inline-block display: items-center px-4 font-semibold text-black border border-gray-300 rounded-md">
                       <button
                         onClick={() =>
                           item.quantity === 1
@@ -90,7 +92,7 @@ const Cart: React.FC = () => {
                             : updateQuantity(item.id, item.quantity - 1)
                         }
                       >
-                        -
+                       <FaMinus />
                       </button>
                       <input
                         type="number"
@@ -104,7 +106,7 @@ const Cart: React.FC = () => {
                         }
                         className="py-2 pl-2 bg-inherit border-l border-gray-300 hover:text-gray-700"
                       >
-                        +
+                        <FaPlus />
                       </button>
                     </div>
                   </div>
@@ -113,7 +115,7 @@ const Cart: React.FC = () => {
                   <span className="text-gray-400 line-through mr-2">
                     £{(item.quantity * item.price).toFixed(2)}
                   </span>
-                  <span className="text-xl font-medium text-black">
+                  <span className="text-xl font-medium text-black position-fixed">
                     £
                     {(
                       (item.price -
@@ -124,9 +126,13 @@ const Cart: React.FC = () => {
                 </div>
               </div>
             ))}
-            <div className="px-10 py-3 bg-gray-100 rounded-md">
+            <div className="px-10 py-3 bg-gray-100 rounded-md ">
               <div className="flex justify-between">
                 <span className="font-medium">Total</span>
+                <div className="text-right"></div>
+                <span className="font-bold text-gray-500 line-through">
+                  £{calculateTotalDiscount().toFixed(2)}
+                </span>
                 <span className="font-bold ">
                   £{calculateTotal().toFixed(2)}
                 </span>

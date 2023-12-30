@@ -29,11 +29,19 @@ export const useCartActions = () => {
     return cartItems.reduce((total, item) => total + calculateDiscountedPrice(item.price, item.discountPercentage) * item.quantity, 0);
   };
 
+  const calculateTotalDiscount = () => {
+    return cartItems.reduce((totalDiscount, item) => {
+      const discountForItem = item.price * (item.discountPercentage / 100) * item.quantity;
+      return totalDiscount + discountForItem;
+    }, 0);
+  };
+
   return {
     cartItems,
     addToCart,
     removeFromCart,
     updateQuantity,
-    calculateTotal
+    calculateTotal,
+    calculateTotalDiscount
   };
 };
