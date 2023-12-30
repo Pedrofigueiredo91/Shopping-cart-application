@@ -47,8 +47,10 @@ const Products: React.FC = () => {
             <Image
               width={500}
               height={500}
+              quality={95}
+              priority={true}
               src={product.thumbnail}
-              alt="product thumbnail"
+              alt={product.thumbnail}
               className="w-full h-full rounded-lg object-cover duration-200 group-hover:scale-110"
             />
           </div>

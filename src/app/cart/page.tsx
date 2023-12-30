@@ -8,6 +8,7 @@ const CartPage: React.FC = () => {
     <div>
       <Header />
       <Cart />
+      
     </div>
   );
 };
