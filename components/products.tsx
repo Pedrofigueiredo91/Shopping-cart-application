@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Product } from "../types/types";
 import { useCart } from "../hooks/useCart";
+import SkewLoader from "react-spinners/SkewLoader";
+
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -13,7 +15,7 @@ const Products: React.FC = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://dummyjson.com/products");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`);
         if (!response.ok) {
           throw new Error("Data could not be retrieved from the API");
         }
@@ -33,7 +35,12 @@ const Products: React.FC = () => {
   ): number => {
     return price - price * (discountPercentage / 100);
   };
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <SkewLoader color="rgba(00, 00, 00, 1)" size={100} />
+      </div>
+    );
   if (error) return <div>Error : {error}</div>;
 
   return (
@@ -54,7 +61,9 @@ const Products: React.FC = () => {
               className="w-full h-full rounded-lg object-cover duration-200 group-hover:scale-110"
             />
           </div>
-          <h1 className="text-gray-900 font-semibold text-xl tracking-tight mb-3">{product.title}</h1>
+          <h1 className="text-gray-900 font-semibold text-xl tracking-tight mb-3">
+            {product.title}
+          </h1>
           <p className="mb-5">{product.description}</p>
           <h2 className="mb-5 font-semibold">
             £
