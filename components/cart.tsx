@@ -65,11 +65,11 @@ const Cart: React.FC = () => {
                 key={item.id}
                 className="relative flex flex-wrap items-center pb-8 mb-8 -mx-4 border-b border-gray-200 xl:justify-between border-opacity-40"
               >
-                <div className="w-full mb-4 md:mb-0 h-96 md:h-44 md:w-56 sm:w-1/2">
+                <div className="w-full mb-4 md:mb-0 h-96 md:h-44 md:w-56">
                   <img
                     src={item.thumbnail}
                     alt={item.title}
-                    className="object-cover w-full h-full rounded-lg sm:w-"
+                    className="object-cover w-full h-full rounded-lg "
                   />
                 </div>
                 <div className="w-full px-4 mb-6 md:w-96 xl:mb-0">
