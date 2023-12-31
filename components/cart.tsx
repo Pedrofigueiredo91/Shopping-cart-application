@@ -1,10 +1,7 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
-
-import { toast, ToastContainer } from "react-toastify";
-import { FaPlus } from "react-icons/fa";
-import { FaMinus } from "react-icons/fa";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
+import { FaMinus, FaPlus, } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
 import Image from "next/image";
 
@@ -25,14 +22,12 @@ const Cart: React.FC = () => {
     calculateTotalDiscount,
   } = context;
 
-  const removalToastId = "removal-confirmation";
-
   const confirmRemoval = (itemId: number) => {
     if (!isToastShown) {
       setIsToastShown(true);
-      toast.warn(
-        ({ closeToast }) => (
-          <div className="rounded-md bg-white p-3 ">
+      toast(
+        (t) => (
+          <div className="rounded-md bg-white p-3">
             <h3 className="text-lg">
               Are you sure you want to delete this item from your cart?
             </h3>
@@ -40,7 +35,7 @@ const Cart: React.FC = () => {
               <button
                 className="px-4 py-2 rounded-md bg-white"
                 onClick={() => {
-                  toast.dismiss(removalToastId);
+                  toast.dismiss(t.id);
                   setIsToastShown(false);
                 }}
               >
@@ -50,7 +45,7 @@ const Cart: React.FC = () => {
                 className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700"
                 onClick={() => {
                   removeFromCart(itemId);
-                  toast.dismiss(removalToastId);
+                  toast.dismiss(t.id);
                   setIsToastShown(false);
                 }}
               >
@@ -60,18 +55,15 @@ const Cart: React.FC = () => {
           </div>
         ),
         {
-          toastId: removalToastId,
-          onClose: () => setIsToastShown(false),
-          position: "top-center",
-          autoClose: false,
-          closeOnClick: false,
+          id: "removal-confirmation",
+          duration: Infinity,
         }
       );
     }
   };
   return (
     <section className="items-center py-24 bg-gray-50 font-poppins">
-      <ToastContainer />
+      <Toaster />
       <div className="justify-center flex-1 max-w-6xl px-4 py-6 mx-auto lg:py-4 md:px-6">
         <h2 className="mb-10 text-4xl font-bold text-center">Your Cart</h2>
         {cartItems.length === 0 ? (

@@ -8,7 +8,7 @@ import { CartProvider } from "../../context/CartProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
+  title: "Shopping cart app ",
   description: "Shopping cart app",
 };
 
